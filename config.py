@@ -22,6 +22,16 @@ class Settings(BaseModel):
     # DashScope
     dashscope_api_key: str = Field(default='', description='DashScope API Key')
 
+    # 高德地图
+    amap_maps_api_key: str = Field(
+        default='', description='AMap Maps API Key（高德地图 MCP Server 使用）'
+    )
+
+    # Tavily 搜索
+    tavily_api_key: str = Field(
+        default='', description='Tavily Search API Key（Tavily MCP Server 使用）'
+    )
+
     # 数据库配置
     db_host: str = Field(
         default='rm-uf6z891lon6dxuqblqo.mysql.rds.aliyuncs.com',
@@ -36,6 +46,8 @@ class Settings(BaseModel):
 # 从环境变量实例化全局配置
 settings = Settings(
     dashscope_api_key=os.getenv('DASHSCOPE_API_KEY', ''),
+    amap_maps_api_key=os.getenv('AMAP_MAPS_API_KEY', ''),
+    tavily_api_key=os.getenv('TAVILY_API_KEY', ''),
     db_host=os.getenv('DB_HOST', 'rm-uf6z891lon6dxuqblqo.mysql.rds.aliyuncs.com'),
     db_port=int(os.getenv('DB_PORT', '3306')),
     db_user=os.getenv('DB_USER', 'student123'),
@@ -46,3 +58,7 @@ settings = Settings(
 # 保持向后兼容的导出
 dashscope_api_key: str = settings.dashscope_api_key
 DASHSCOPE_API_KEY: str = settings.dashscope_api_key
+amap_maps_api_key: str = settings.amap_maps_api_key
+AMAP_MAPS_API_KEY: str = settings.amap_maps_api_key
+tavily_api_key: str = settings.tavily_api_key
+TAVILY_API_KEY: str = settings.tavily_api_key

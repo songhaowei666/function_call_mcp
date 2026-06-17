@@ -7,3 +7,4 @@
 - 优先使用.vscode中的python环境
 - 配置严格使用.env 和 config.py,并保持两者一致
 - readme简单说明每个文件的内容
+- .env 新增配置时候，抹除敏感信息后,同步更新 .env.example
