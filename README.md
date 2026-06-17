@@ -26,11 +26,52 @@ DASHSCOPE_API_KEY=sk-xxxxxxxxxxxxxxxx
 
 ##  案例
 
+### Function Calling 案例
+
 | 脚本 | 数据库驱动 | 可视化能力 | 特点 |
 |---|---|---|---|
 | `assistant_ticket_bot-1.py` | `mysqlconnector` | ❌ 无 | 基础 SQL 查询，返回 Markdown 表格 |
 | `assistant_ticket_bot-2.py` | `mysqlconnector` | ✅ 简单柱状图 | 自动推断 x/y 轴，生成柱状图 |
 | `assistant_ticket_bot-3.py` | `pymysql` | ✅ 堆叠柱状图 | 支持多维度透视、中文显示优化、Code Interpreter |
+
+### LangChain 案例
+
+| 脚本 | 框架 | 数据库驱动 | 特点 |
+|---|---|---|---|
+| `assistant_ticket_bot_langchain.py` | `LangChain 1.x` | `pymysql` | 使用 LangChain `create_agent` + DashScope 兼容接口实现门票查询助手 |
+
+### MCP 案例
+
+| 脚本 | MCP Server | 功能 | 说明 |
+|---|---|---|---|
+| `assistant_mcp_amap_bot.py` | `amap-maps` | 高德地图查询 | 调用高德地图 MCP 服务进行地理位置相关查询 |
+| `assistant_mcp_tavily_bot.py` | `tavily-mcp` | 网络搜索 | 调用 Tavily 搜索 MCP 服务进行网络信息检索 |
+| `assistant_mcp_txt_bot.py` | `txt-counter` | 文本统计 | 调用本地 `txt_counter.py` MCP Server，统计文本字数、单词数、行数 |
+
+### MCP Server
+
+| 脚本 | 说明 |
+|---|---|
+| `txt_counter.py` | 本地 MCP Server 示例，提供文本字符数、单词数、行数统计工具 |
+
+## 运行方式
+
+```bash
+# Function Calling 案例
+python assistant_ticket_bot-1.py
+python assistant_ticket_bot-2.py
+python assistant_ticket_bot-3.py
+
+# LangChain 案例
+python assistant_ticket_bot_langchain.py
+
+# MCP 案例
+python assistant_mcp_amap_bot.py
+python assistant_mcp_tavily_bot.py
+python assistant_mcp_txt_bot.py
+```
+
+> 运行 MCP 案例前，请确保 `.env` 中已配置对应的 API Key（如 `AMAP_MAPS_API_KEY`、`TAVILY_API_KEY`）。
 
 
 ## 注意事项
