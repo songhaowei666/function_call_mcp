@@ -54,6 +54,13 @@ DASHSCOPE_API_KEY=sk-xxxxxxxxxxxxxxxx
 |---|---|
 | `txt_counter.py` | 本地 MCP Server 示例，提供文本字符数、单词数、行数统计工具 |
 
+### MCP 工具发现
+
+| 脚本 | 说明 |
+|---|---|
+| `mcp_tools/list_mcp_tools.py` | 读取通用 MCP JSON 配置，通过 stdio 连接 Server 并列出 `list_tools` 结果 |
+| `mcp_tools/mcp.json.example` | MCP 配置示例（`mcpServers` 格式，支持 `${ENV_VAR}` 占位符） |
+
 ## 运行方式
 
 ```bash
@@ -69,6 +76,9 @@ python assistant_ticket_bot_langchain.py
 python assistant_mcp_amap_bot.py
 python assistant_mcp_tavily_bot.py
 python assistant_mcp_txt_bot.py
+
+# 列出 MCP 配置中的工具（人类可读 + JSON）
+python mcp_tools/list_mcp_tools.py --config mcp_tools/mcp.json.example --server txt-counter
 ```
 
 > 运行 MCP 案例前，请确保 `.env` 中已配置对应的 API Key（如 `AMAP_MAPS_API_KEY`、`TAVILY_API_KEY`）。

@@ -1,0 +1,30 @@
+{
+  "mcpServers": {
+    "txt-counter": {
+      "command": "python",
+      "args": [
+        "../txt_counter.py"
+      ]
+    },
+    "amap-maps": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@amap/amap-maps-mcp-server"
+      ],
+      "env": {
+        "AMAP_MAPS_API_KEY": "${AMAP_MAPS_API_KEY}"
+      }
+    },
+    "tavily-mcp": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "tavily-mcp@0.1.4"
+      ],
+      "env": {
+        "TAVILY_API_KEY": "${TAVILY_API_KEY}"
+      }
+    }
+  }
+}
