@@ -1,4 +1,4 @@
-"""列出 MCP 配置文件中的能力（兼容入口，内部调用 mcp_connect + cli）。"""
+"""python -m mcp_tools.cli 入口。"""
 
 from __future__ import annotations
 

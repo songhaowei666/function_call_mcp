@@ -56,10 +56,13 @@ DASHSCOPE_API_KEY=sk-xxxxxxxxxxxxxxxx
 
 ### MCP 工具发现
 
-| 脚本 | 说明 |
+| 路径 | 说明 |
 |---|---|
-| `mcp_tools/list_mcp_tools.py` | 读取通用 MCP JSON 配置，通过 stdio 连接 Server 并列出 `list_tools` 结果 |
-| `mcp_tools/mcp.json.example` | MCP 配置示例（`mcpServers` 格式，支持 `${ENV_VAR}` 占位符） |
+| `mcp_tools/mcp_connect/` | **连接层库**（C 方案）：配置、传输、发现、长连接、短连接探测 |
+| `mcp_tools/cli/` | **薄 CLI**：参数解析与输出，逻辑全部调用 `mcp_connect` |
+| `mcp_tools/list_mcp_tools.py` | 兼容入口，等价于 `python -m mcp_tools.cli` |
+| `mcp_tools/mcp.json.example` | MCP 配置示例（`mcpServers` 格式，支持 `${ENV_VAR}`、`type`/`url`） |
+| `mcp_tools/docs/mcp_connect-library.md` | 库 API 与目录结构说明 |
 
 ## 运行方式
 
@@ -77,8 +80,11 @@ python assistant_mcp_amap_bot.py
 python assistant_mcp_tavily_bot.py
 python assistant_mcp_txt_bot.py
 
-# 列出 MCP 配置中的工具（人类可读 + JSON）
+# 列出 MCP 配置中的 tools/resources/prompts（人类可读 + JSON）
 python mcp_tools/list_mcp_tools.py --config mcp_tools/mcp.json.example --server txt-counter
+
+# 或使用模块入口
+python -m mcp_tools.cli --config mcp_tools/mcp.json.example --human-only
 ```
 
 > 运行 MCP 案例前，请确保 `.env` 中已配置对应的 API Key（如 `AMAP_MAPS_API_KEY`、`TAVILY_API_KEY`）。
